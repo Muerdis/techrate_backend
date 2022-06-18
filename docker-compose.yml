@@ -1,0 +1,28 @@
+version: '3'
+
+volumes:
+  media: {}
+  static: {}
+
+services:
+  app:
+    restart: always
+    build: .
+    volumes:
+      - media:/web/media/
+      - static:/web/static/
+    command: bash -c "python3 manage.py collectstatic --noinput && python3 manage.py migrate && gunicorn main.asgi:application -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 -w 10"
+    ports:
+      - "8000:8000"
+
+  nginx:
+    restart: always
+    build: ./nginx
+    volumes:
+      - media:/web/media/
+      - static:/web/static/
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
