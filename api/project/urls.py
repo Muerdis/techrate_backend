@@ -1,15 +1,15 @@
 """
-Post API's urls
+Project API's urls
 """
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from api.post.views import PostViewSet
+from api.project.views import TokenViewSet
 
-app_name = "post_api"
+app_name = "project_api"
 
 router = DefaultRouter()
-router.register("all", PostViewSet, basename="posts")
+router.register("all", TokenViewSet, basename="tokens")
 
 urlpatterns = [
     path("", include(router.urls)),

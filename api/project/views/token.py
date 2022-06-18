@@ -1,54 +1,45 @@
 """
-Post view set
+Token view set
 """
 from django.utils.decorators import method_decorator
+from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import mixins, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from api.post.serializers import PostSerializer
-from post.models import Post
+from api.project.serializers import TokenSerializer
+from project.models import Token
 
 
 @method_decorator(
     name="list",
     decorator=swagger_auto_schema(
-        operation_id="Get a list posts",
-        operation_description="Get a list of posts",
+        operation_id="Get a list tokens",
+        operation_description="Get a list of tokens",
     ),
 )
-@method_decorator(
-    name="retrieve",
-    decorator=swagger_auto_schema(
-        operation_id="Get a post",
-        operation_description="Get a post",
-    ),
-)
-class PostViewSet(
+class TokenViewSet(
     mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
     PageNumberPagination,
     viewsets.GenericViewSet
 ):
     """
-    API for getting posts
+    API for getting tokens
     """
 
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    queryset = Token.objects.all()
+    serializer_class = TokenSerializer
     permission_classes = (AllowAny,)
     page_size_query_param = "size"
-    page_size = 3
-    max_page_size = 100
+    page_size = 20
+    max_page_size = 10000
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["blockchain"]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-
-        tag = request.query_params.get("tag", None)
-        if tag:
-            queryset = queryset.filter(tags__name=tag)
 
         page = self.paginate_queryset(queryset, self.request)
         if page is not None:

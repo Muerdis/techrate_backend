@@ -1,5 +1,5 @@
 """
-Tender config
+Post config
 """
 from django.apps import AppConfig
 

@@ -23,4 +23,5 @@ urlpatterns = [
     path("redoc/", SchemaView.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 
     path("post/", include("api.post.urls", namespace="post_api")),
+    path("token/", include("api.project.urls", namespace="project_api")),
 ]

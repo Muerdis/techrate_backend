@@ -14,7 +14,7 @@ class Post(TimeStampedModel):
 
     uid = models.UUIDField(verbose_name="UID", help_text="UID", default=uuid4, primary_key=True)
     name = models.CharField(verbose_name="Name", help_text="Name", max_length=250, unique=True)
-    text = models.TextField(verbose_name="Text", help_text="Text", blank=True, null=True)
+    text = models.TextField(verbose_name="Text", help_text="Text")
     image = models.ImageField(verbose_name="Image", help_text="Image", blank=True, null=True)
     tags = models.ManyToManyField("post.Tag", verbose_name="tags")
 
