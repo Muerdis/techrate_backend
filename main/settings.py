@@ -36,12 +36,10 @@ ALLOWED_HOSTS = ["*"]
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/static'),
-]
+STATICFILES_DIRS = ['/static']
 
-STATIC_ROOT = "/static"
-MEDIA_ROOT = "/media"
+STATIC_ROOT = "/static/"
+MEDIA_ROOT = "/media/"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
