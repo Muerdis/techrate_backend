@@ -25,7 +25,5 @@ services:
 
 volumes:
   static:
-    external: true
 
   media:
-    external: true
