@@ -36,8 +36,6 @@ ALLOWED_HOSTS = ["*"]
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 
-STATICFILES_DIRS = ['/static']
-
 STATIC_ROOT = "/static/"
 MEDIA_ROOT = "/media/"
 
