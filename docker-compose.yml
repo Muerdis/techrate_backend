@@ -9,8 +9,8 @@ services:
     restart: always
     build: .
     volumes:
-      - media:/web/media/
-      - static:/web/static/
+      - static:/static/
+      - media:/media/
     command: bash -c "python3 manage.py collectstatic --noinput && python3 manage.py migrate && gunicorn main.asgi:application -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 -w 10"
     ports:
       - "8000:8000"
