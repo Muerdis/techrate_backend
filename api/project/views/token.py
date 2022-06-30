@@ -40,6 +40,17 @@ class TokenViewSet(
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
+        search = request.query_params.get("search", "")
+        field = request.query_params.get("field", "")
+        sort = request.query_params.get("sort", "")
+        if search:
+            queryset = queryset.filter(name__icontains=search)
+
+        if field and sort:
+            if sort == "asc":
+                queryset = queryset.order_by(field)
+            elif sort == "desc":
+                queryset = queryset.order_by(f"-{field}")
 
         page = self.paginate_queryset(queryset, self.request)
         if page is not None:
