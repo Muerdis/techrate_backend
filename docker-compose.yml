@@ -5,8 +5,8 @@ services:
     restart: always
     build: .
     volumes:
-      - /static/:/static/
-      - /media/:/media/
+      - static:/static
+      - media:/media
     command: bash -c "python3 manage.py collectstatic --noinput && python3 manage.py migrate && gunicorn main.asgi:application -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 -w 10"
     ports:
       - "8000:8000"
@@ -15,10 +15,17 @@ services:
     restart: always
     build: ./nginx
     volumes:
-      - /static/:/static/
-      - /media/:/media/
+      - static:/static
+      - media:/media
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - app
+
+volumes:
+  static:
+    external: true
+
+  media:
+    external: true
