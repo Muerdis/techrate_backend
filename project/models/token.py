@@ -29,7 +29,7 @@ class Token(TimeStampedModel):
     audit_date = models.DateTimeField(verbose_name="Audit date", help_text="Audit date")
     is_partner = models.BooleanField(verbose_name="Is partner", help_text="Is partner", default=False)
     contract_address = models.CharField(verbose_name="Contract address", help_text="Contract address", max_length=250)
-    number = models.PositiveIntegerField(verbose_name="Number", help_text="Number", default=None)
+    number = models.PositiveIntegerField(verbose_name="Number", help_text="Number", default=None, blank=True, null=True)
 
     class Meta:
         ordering = ("-created",)
