@@ -13,3 +13,4 @@ class TokenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Token
+        fields = "__all__"
