@@ -17,6 +17,21 @@ from api.project.serializers import RequestAuditSerializer
 
 async def send_message(data):
     bot = telegram.Bot(settings.BOT_TOKEN)
+    text = f"""
+    ✅ Новая заявка ✅
+    
+    1) Name:
+    {data.get("name", "-")}
+    
+    2) Email: 
+    {data.get("email", "-")}
+    
+    3) Personal telegram ID / phone:
+    {data.get("contact", "-")}
+    
+    4) Comments (link to the contract):
+    {data.get("comments", "-")}
+    """
     async with bot:
         await bot.send_message(text=data, chat_id=settings.CHAT_ID)
 
