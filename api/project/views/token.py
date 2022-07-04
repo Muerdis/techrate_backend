@@ -16,7 +16,7 @@ from project.models import Token
 @method_decorator(
     name="list",
     decorator=swagger_auto_schema(
-        operation_id="Get a list tokens",
+        operation_id="Get a list of tokens",
         operation_description="Get a list of tokens",
     ),
 )
