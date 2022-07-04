@@ -33,7 +33,7 @@ async def send_message(data):
     {data.get("comments", "-")}
     """
     async with bot:
-        await bot.send_message(text=data, chat_id=settings.CHAT_ID)
+        await bot.send_message(text=text, chat_id=settings.CHAT_ID)
 
 
 @method_decorator(
