@@ -45,4 +45,4 @@ class RequestAuditView(APIView):
 
         asyncio.run(send_message(request.data))
 
-        return Response(status=status.HTTP_200_OK)
+        return Response({"status": "success"}, status=status.HTTP_200_OK)
