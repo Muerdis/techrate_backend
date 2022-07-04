@@ -36,7 +36,7 @@ class TokenViewSet(
     page_size = 20
     max_page_size = 10000
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["blockchain"]
+    filterset_fields = ["blockchain", "contract_address"]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())

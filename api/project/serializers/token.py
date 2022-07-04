@@ -13,4 +13,3 @@ class TokenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Token
-        exclude = ("contract_address", )
