@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='token',
             name='number',
-            field=models.PositiveIntegerField(default=None, help_text='Number', verbose_name='Number'),
+            field=models.PositiveIntegerField(blank=True, default=None, help_text='Number', null=True, verbose_name='Number'),
         ),
     ]
