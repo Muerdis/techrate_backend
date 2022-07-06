@@ -3,4 +3,5 @@
 Project module models
 """
 
+from .blockchain import Blockchain
 from .token import Token
