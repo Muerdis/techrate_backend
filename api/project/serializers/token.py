@@ -10,6 +10,7 @@ class TokenSerializer(serializers.ModelSerializer):
     """
     Token serializer
     """
+    blockchain = serializers.CharField(help_text="Blockchain", source="blockchain.name")
 
     class Meta:
         model = Token

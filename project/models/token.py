@@ -20,8 +20,9 @@ class Token(TimeStampedModel):
     score = models.PositiveIntegerField(
         verbose_name="Score", help_text="Score", default=0, validators=[MinValueValidator(0), MaxValueValidator(100)]
     )
-    blockchain = models.CharField(
-        verbose_name="Blockchain", help_text="Blockchain", choices=BlockchainType.CHOICES, max_length=20
+    blockchain = models.ForeignKey(
+        "project.Blockchain", verbose_name="Blockchain", help_text="Blockchain",
+        blank=True, null=True, on_delete=models.SET_NULL
     )
     category = models.CharField(verbose_name="Category", help_text="Category", max_length=250)
     image = models.ImageField(verbose_name="Image", help_text="Image")
@@ -31,10 +32,6 @@ class Token(TimeStampedModel):
     audit_date = models.DateTimeField(verbose_name="Audit date", help_text="Audit date")
     is_partner = models.BooleanField(verbose_name="Is partner", help_text="Is partner", default=False)
     contract_address = models.CharField(verbose_name="Contract address", help_text="Contract address", max_length=250)
-    blockchain_new = models.ForeignKey(
-        "project.Blockchain", verbose_name="Blockchain", help_text="Blockchain",
-        blank=True, null=True, on_delete=models.SET_NULL
-    )
 
     class Meta:
         ordering = ("-created",)

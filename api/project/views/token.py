@@ -36,7 +36,7 @@ class TokenViewSet(
     page_size = 20
     max_page_size = 10000
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["blockchain", "contract_address"]
+    filterset_fields = ["contract_address"]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -46,7 +46,14 @@ class TokenViewSet(
         if search:
             queryset = queryset.filter(name__icontains=search)
 
+        blockchain = request.query_params.get("blockchain", None)
+        if blockchain:
+            queryset = queryset.filter(blockchain__name=blockchain)
+
         if field and sort:
+            if field == "blockchain":
+                field = "blockchain__name"
+
             if sort == "asc":
                 queryset = queryset.order_by("-is_partner", field)
             elif sort == "desc":
