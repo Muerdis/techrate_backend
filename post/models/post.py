@@ -16,7 +16,7 @@ class Post(TimeStampedModel):
     name = models.CharField(verbose_name="Name", help_text="Name", max_length=250, unique=True)
     text = models.TextField(verbose_name="Text", help_text="Text")
     image = models.ImageField(verbose_name="Image", help_text="Image", blank=True, null=True)
-    tags = models.ManyToManyField("post.Tag", verbose_name="posts")
+    tags = models.ManyToManyField("post.Tag", verbose_name="Tags", help_text="Tags")
 
     class Meta:
         ordering = ("-created",)
