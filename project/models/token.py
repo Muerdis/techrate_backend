@@ -31,10 +31,12 @@ class Token(TimeStampedModel):
     website = models.URLField(verbose_name="Website", help_text="Website", max_length=1000, blank=True, null=True)
     audit_date = models.DateTimeField(verbose_name="Audit date", help_text="Audit date")
     is_partner = models.BooleanField(verbose_name="Is partner", help_text="Is partner", default=False)
-    contract_address = models.CharField(verbose_name="Contract address", help_text="Contract address", max_length=250)
+    contract_address = models.CharField(
+        verbose_name="Contract address", help_text="Contract address", max_length=250, blank=True, null=True
+    )
 
     class Meta:
-        ordering = ("-created",)
+        ordering = ("-audit_date",)
 
     def __str__(self):
         return self.name

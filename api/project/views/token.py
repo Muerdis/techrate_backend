@@ -59,7 +59,7 @@ class TokenViewSet(
             elif sort == "desc":
                 queryset = queryset.order_by("-is_partner", f"-{field}")
         else:
-            queryset = queryset.order_by("-is_partner", "-created")
+            queryset = queryset.order_by("-is_partner", "-audit_date")
 
         page = self.paginate_queryset(queryset, self.request)
         if page is not None:
