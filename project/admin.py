@@ -13,7 +13,7 @@ def download_csv(modeladmin, request, queryset):
     writer = csv.writer(response)
 
     fields = [
-        "created", "modified"
+        "created", "modified",
         "name", "score", "blockchain", "category", "audit", "twitter",
         "website", "audit_date", "is_partner", "contract_address"
     ]
