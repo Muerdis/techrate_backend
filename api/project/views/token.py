@@ -1,8 +1,8 @@
 """
 Token view set
 """
+from django.db.models import Q
 from django.utils.decorators import method_decorator
-from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import mixins, viewsets
 from rest_framework.pagination import PageNumberPagination
@@ -35,8 +35,6 @@ class TokenViewSet(
     page_size_query_param = "size"
     page_size = 20
     max_page_size = 10000
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["contract_address"]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -44,7 +42,7 @@ class TokenViewSet(
         field = request.query_params.get("field", "")
         sort = request.query_params.get("sort", "")
         if search:
-            queryset = queryset.filter(name__icontains=search)
+            queryset = queryset.filter(Q(name__icontains=search) | Q(contract_address__icontains=search))
 
         blockchain = request.query_params.get("blockchain", None)
         if blockchain:
