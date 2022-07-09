@@ -7,8 +7,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from project.enums import BlockchainType
-
 
 class Token(TimeStampedModel):
     """
