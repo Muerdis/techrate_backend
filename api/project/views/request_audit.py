@@ -18,6 +18,7 @@ from api.project.serializers import RequestAuditSerializer
 async def send_message(data):
     bot = telegram.Bot(settings.BOT_TOKEN)
     text = f"""
+    
     ✅ Новая заявка ✅
     
     1) Name:
