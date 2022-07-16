@@ -28,6 +28,7 @@ class Token(TimeStampedModel):
     audit = models.URLField(verbose_name="Audit", help_text="Audit", max_length=1000)
     twitter = models.URLField(verbose_name="Twitter", help_text="Twitter", max_length=1000, blank=True, null=True)
     website = models.URLField(verbose_name="Website", help_text="Website", max_length=1000, blank=True, null=True)
+    telegram = models.URLField(verbose_name="Telegram", help_text="Telegram", max_length=1000, blank=True, null=True)
     audit_date = models.DateTimeField(verbose_name="Audit date", help_text="Audit date")
     is_partner = models.BooleanField(verbose_name="Is partner", help_text="Is partner", default=False)
     contract_address = models.CharField(
