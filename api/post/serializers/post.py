@@ -24,4 +24,4 @@ class PostSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_image(obj):
-        return obj.replace("http://83.220.175.158:8000/", "https://techrate.org/")
+        return f"https://techrate.org{obj.image.url}" if obj.image else None
