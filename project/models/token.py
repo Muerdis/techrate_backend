@@ -3,6 +3,7 @@ Token model
 """
 from uuid import uuid4
 
+from django_better_admin_arrayfield.models.fields import ArrayField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django_resized import ResizedImageField
@@ -23,6 +24,9 @@ class Token(TimeStampedModel):
         "project.Blockchain", verbose_name="Blockchain", help_text="Blockchain", on_delete=models.CASCADE
     )
     category = models.CharField(verbose_name="Category", help_text="Category", max_length=250)
+    categories = ArrayField(
+        models.CharField(max_length=250), verbose_name="Categories", help_text="Categories", blank=True, null=True
+    )
     image = ResizedImageField(verbose_name="Image", help_text="Image", size=[200, 200])
     audit = models.URLField(verbose_name="Audit", help_text="Audit", max_length=1000)
     twitter = models.URLField(verbose_name="Twitter", help_text="Twitter", max_length=1000, blank=True, null=True)

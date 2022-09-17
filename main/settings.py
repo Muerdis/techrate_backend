@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "corsheaders",
     "django_summernote",
+    "django_better_admin_arrayfield",
     "post",
     "project",
 ]

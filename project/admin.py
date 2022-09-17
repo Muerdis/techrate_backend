@@ -2,6 +2,7 @@ import csv
 
 from django.contrib import admin
 from django.http import HttpResponse
+from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 
 from project.models import Token, Blockchain
 
@@ -36,7 +37,7 @@ def download_csv(modeladmin, request, queryset):
     return response
 
 
-class TokenAdmin(admin.ModelAdmin):
+class TokenAdmin(admin.ModelAdmin, DynamicArrayMixin):
     actions = [download_csv]
 
 

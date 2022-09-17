@@ -14,3 +14,4 @@ django-summernote==0.8.20.0
 django-cors-headers==3.13.0
 python-telegram-bot==20.0a2
 django-resized==1.0.1
+django-better-admin-arrayfield==1.4.2

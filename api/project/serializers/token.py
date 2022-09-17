@@ -3,6 +3,7 @@ Token serializer
 """
 from rest_framework import serializers
 
+from api.project.serializers import BlockchainSerializer
 from project.models import Token
 
 
@@ -10,7 +11,7 @@ class TokenSerializer(serializers.ModelSerializer):
     """
     Token serializer
     """
-    blockchain = serializers.CharField(help_text="Blockchain", source="blockchain.name")
+    blockchain = BlockchainSerializer(many=False)
     image = serializers.SerializerMethodField(help_text="Image")
 
     class Meta:
