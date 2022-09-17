@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app_dev:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_PORT=8888
+    volumes:
+      - static:/static
+      - media:/media
+    command: bash -c "python3 manage.py collectstatic --noinput && python3 manage.py migrate && gunicorn main.asgi:application -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8888 -w 10"
+    ports:
+      - "8888:8888"
+
+volumes:
+  static:
+  media:

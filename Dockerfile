@@ -1,10 +1,12 @@
 FROM python:3.9
 
+ARG APP_PORT
+
 RUN mkdir /backend
 WORKDIR /backend
 ADD . /backend
 
-EXPOSE 8000
+EXPOSE $APP_PORT
 
 RUN apt update
 
