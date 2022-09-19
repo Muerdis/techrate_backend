@@ -36,7 +36,7 @@ class Token(TimeStampedModel):
     contract_address = models.CharField(
         verbose_name="Contract address", help_text="Contract address", max_length=250
     )
-    index = models.PositiveIntegerField(verbose_name="Index", help_text="Index", blank=True, null=True)
+    index = models.PositiveIntegerField(verbose_name="Index", help_text="Index", default=0)
 
     class Meta:
         ordering = ("-audit_date",)
