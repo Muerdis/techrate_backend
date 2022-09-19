@@ -23,9 +23,8 @@ class Token(TimeStampedModel):
     blockchain = models.ForeignKey(
         "project.Blockchain", verbose_name="Blockchain", help_text="Blockchain", on_delete=models.CASCADE
     )
-    category = models.CharField(verbose_name="Category", help_text="Category", max_length=250)
     categories = ArrayField(
-        models.CharField(max_length=250), verbose_name="Categories", help_text="Categories", blank=True, null=True
+        models.CharField(max_length=250), verbose_name="Categories", help_text="Categories"
     )
     image = ResizedImageField(verbose_name="Image", help_text="Image", size=[200, 200])
     audit = models.URLField(verbose_name="Audit", help_text="Audit", max_length=1000)
@@ -37,6 +36,7 @@ class Token(TimeStampedModel):
     contract_address = models.CharField(
         verbose_name="Contract address", help_text="Contract address", max_length=250
     )
+    index = models.PositiveIntegerField(verbose_name="Index", help_text="Index", blank=True, null=True)
 
     class Meta:
         ordering = ("-audit_date",)

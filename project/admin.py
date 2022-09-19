@@ -15,7 +15,7 @@ def download_csv(modeladmin, request, queryset):
 
     fields = [
         "created", "modified",
-        "name", "score", "blockchain", "category", "audit", "twitter",
+        "name", "score", "blockchain", "audit", "twitter",
         "website", "audit_date", "is_partner", "contract_address"
     ]
 
