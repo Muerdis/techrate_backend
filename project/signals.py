@@ -13,4 +13,12 @@ def add_index_for_token(sender, instance, created, **kwargs):  # pylint: disable
     """
     Add index for token
     """
-    # Token.objects.all().update(index=F('index') + 1)
+    if not created:
+        return
+
+    tokens = Token.objects.all()
+    index = 0
+    for token in tokens:
+        index += 1
+        token.index = index
+        token.save()
